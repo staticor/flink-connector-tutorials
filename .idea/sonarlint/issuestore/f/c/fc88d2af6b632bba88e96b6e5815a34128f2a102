@@ -1,0 +1,9 @@
+
+S	java:S1060"9Replace this use of System.out or System.err by a logger.(¿ßÒ±ûÿÿÿÿ
+N	java:S106A"9Replace this use of System.out or System.err by a logger.(ù¼Âõ
+o
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(›»ÐÒ
+u
+java:S3008"SRename this field "in_topic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ò°·®øÿÿÿÿ8Ïöö¦è.
+|
+java:S3008"ZRename this field "BOOTSTRAPSERVER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰¯œÒùÿÿÿÿ8Ø“÷¦è.

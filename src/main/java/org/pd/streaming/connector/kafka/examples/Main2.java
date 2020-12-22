@@ -23,7 +23,7 @@ public class Main2
     @SuppressWarnings("serial")
 	public static void main( String[] args ) throws Exception
     {
-    	Producer<String> p = new Producer<String>(BOOTSTRAP_SERVER, StringSerializer.class.getName());
+    	MyProducer<String> p = new MyProducer<>(BOOTSTRAP_SERVER, StringSerializer.class.getName());
     	
     	StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         

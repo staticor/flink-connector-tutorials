@@ -23,7 +23,7 @@ public class Main3
     @SuppressWarnings("serial")
 	public static void main( String[] args ) throws Exception
     {
-    	Producer<String> p = new Producer<String>(BOOTSTRAP_SERVER, StringSerializer.class.getName());
+    	MyProducer<String> p = new MyProducer<String>(BOOTSTRAP_SERVER, StringSerializer.class.getName());
     	
     	StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
     	
@@ -35,13 +35,13 @@ public class Main3
         props.put("client.id", "flink-example3");
         
         // consumer to get both key/values per Topic
-        FlinkKafkaConsumer<KafkaRecord> kafkaConsumer = new FlinkKafkaConsumer<>(TOPIC_IN, new MySchema(), props);
+        FlinkKafkaConsumer<SimpleKafkaRecord> kafkaConsumer = new FlinkKafkaConsumer<>(TOPIC_IN, new MySchema(), props);
         
         // for allowing Flink to handle late elements
-        kafkaConsumer.assignTimestampsAndWatermarks(new AscendingTimestampExtractor<KafkaRecord>() 
+        kafkaConsumer.assignTimestampsAndWatermarks(new AscendingTimestampExtractor<SimpleKafkaRecord>()
         {
         	@Override
-			public long extractAscendingTimestamp(KafkaRecord record) 
+			public long extractAscendingTimestamp(SimpleKafkaRecord record)
         	{
         		return record.timestamp;
 			}
@@ -60,14 +60,14 @@ public class Main3
 											   Semantic.EXACTLY_ONCE);
 		
 		// create a stream to ingest data from Kafka with key/value
-        DataStream<KafkaRecord> stream = env.addSource(kafkaConsumer);
+        DataStream<SimpleKafkaRecord> stream = env.addSource(kafkaConsumer);
         
         stream        
         .filter((record) -> record.value != null && !record.value.isEmpty())
         .keyBy(record -> record.key)
         .timeWindow(Time.seconds(5))
         .allowedLateness(Time.milliseconds(500))        
-        .aggregate(new AggregateFunction<KafkaRecord, String, String>()  // kafka aggregate API is very simple but same can be achieved by Flink's reduce
+        .aggregate(new AggregateFunction<SimpleKafkaRecord, String, String>()  // kafka aggregate API is very simple but same can be achieved by Flink's reduce
         {
         	@Override
 			public String createAccumulator() {
@@ -75,7 +75,7 @@ public class Main3
 			}
 
 			@Override
-			public String add(KafkaRecord record, String accumulator) {
+			public String add(SimpleKafkaRecord record, String accumulator) {
 				return accumulator + record.value.length();
 			}
 

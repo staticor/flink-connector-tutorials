@@ -1,0 +1,11 @@
+
+t
+java:S2293+"YReplace the type specification in this constructor call with the diamond operator ("<>").(±ŒÛşÿÿÿÿ
+i
+java:S3008"SRename this field "TOPIC_IN" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÒĞ¬
+q
+java:S3008"[Rename this field "BOOTSTRAP_SERVER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ö¸£Ú
+N	java:S106:"9Replace this use of System.out or System.err by a logger.(¥‰¥¼
+j
+java:S3008"TRename this field "TOPIC_OUT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›â”‘
+N	java:S106D"9Replace this use of System.out or System.err by a logger.(ù¼Âõ

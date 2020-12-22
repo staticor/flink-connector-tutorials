@@ -3,10 +3,10 @@ package org.pd.streaming.connector.kafka.examples;
 public class NumberGenerator extends Thread 
 {
 	int counter = 0;
-	final Producer<String> p;
+	final MyProducer<String> p;
 	final String topic;
 
-	public NumberGenerator(Producer<String> p, String topic)
+	public NumberGenerator(MyProducer<String> p, String topic)
 	{
 		this.p = p;
 		this.topic = topic;

@@ -6,7 +6,7 @@ import lombok.Data;
 
 @SuppressWarnings("serial")
 @Data
-public class KafkaRecord implements Serializable
+public class SimpleKafkaRecord implements Serializable
 {
 	String key;
 	String value;
@@ -15,6 +15,7 @@ public class KafkaRecord implements Serializable
 	@Override
 	public String toString()
 	{
+
 		return key+":"+value;
 	}
 
